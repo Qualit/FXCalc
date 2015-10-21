@@ -37,7 +37,6 @@ public class FXCalc extends Application {
 	public void Click(ActionEvent event) {
 		String eventText = ((Button)event.getSource()).getText();
 		System.out.println(eventText);
-		//if(eventText.equalsIgnoreCase(anotherString))
 		display.appendText(eventText);
 		
 	}
