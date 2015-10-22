@@ -1,6 +1,7 @@
 package application;
 	
 import javafx.application.Application;
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,9 @@ import javafx.scene.layout.BorderPane;
 
 
 public class FXCalc extends Application {
+	
+	private Controller controller;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
