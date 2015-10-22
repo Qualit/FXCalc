@@ -3,7 +3,7 @@ package model.operations;
 public class SubtractionOperation implements BinaryOperation {
 
 	@Override
-	public double compute(double operand1, double operand2)throws ArithmeticException,IllegalArgumentException {
+	public double compute(final double operand1, final double operand2)throws ArithmeticException,IllegalArgumentException {
 		
 		if(Double.isNaN(operand1)){
 			throw new IllegalArgumentException("Subtraction operand1 is incorrect");
