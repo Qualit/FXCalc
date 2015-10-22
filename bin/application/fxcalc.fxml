@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXCalc">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXCalc">
    <rowConstraints>
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
@@ -22,7 +22,7 @@
    </columnConstraints>
    <children>
       <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="124.0" text="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
-      <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="120.0" text="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+      <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="120.0" styleClass="errorclass" text="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="124.0" text="." GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="124.0" text="2" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
       <Button mnemonicParsing="false" onAction="#Click" prefHeight="25.0" prefWidth="124.0" text="+/-" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />

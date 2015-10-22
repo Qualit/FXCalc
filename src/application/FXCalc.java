@@ -38,6 +38,9 @@ public class FXCalc extends Application {
 		String eventText = ((Button)event.getSource()).getText();
 		System.out.println(eventText);
 		display.appendText(eventText);
+		if(eventText.equals("=")){
+			display.getScene().getRoot().getStyleClass().add("error");
+		}
 		
 	}
 	@FXML

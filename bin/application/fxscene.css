@@ -9,3 +9,7 @@
 -fx-max-width:2000px;
 -fx-max-height:2000px;
 }
+
+.error .errorclass{
+	-fx-text-fill:gray;
+}
