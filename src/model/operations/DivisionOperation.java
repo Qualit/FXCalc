@@ -4,6 +4,7 @@ public class DivisionOperation implements BinaryOperation{
 
 	@Override
 	public double compute(final double operand1, final double operand2)throws ArithmeticException,IllegalArgumentException {
+		
 		if(Double.isNaN(operand1)){
 			throw new IllegalArgumentException("Division operand1 is incorrect");
 		}
