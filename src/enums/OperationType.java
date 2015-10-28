@@ -11,6 +11,7 @@ public enum OperationType {
 	EQUAL("="),
 	CLEAR("C"),
 	SQUARE_ROOT("sqrt"),
+	CHANGE_SIGN("=/-"),
 	POINT(Calculator.DECIMAL_SEPARATOR),
 	NO_OP("no_op");
 	private String operationTypeSign;

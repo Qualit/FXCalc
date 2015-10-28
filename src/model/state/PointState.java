@@ -20,7 +20,6 @@ public class PointState extends CalculatorState{
 
 	@Override
 	public String enterDigit(final Calculator calculator, char digit) {
-		System.out.println("current state: "+this.getClass()+"digit:"+digit);
 		calculator.setCurrentState(PointState.getInstance());
 		calculator.appendToDisplay(String.valueOf(digit));
 		calculator.appendToAccumulateStr(String.valueOf(digit));
@@ -32,8 +31,6 @@ public class PointState extends CalculatorState{
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
-		//String tmp = calculator.getDisplay();
-		//calculator.clearDisplay();
 		calculator.setPendingOperation(binaryOperation);
 		return calculator.getDisplay();
 		
@@ -41,7 +38,11 @@ public class PointState extends CalculatorState{
 
 	@Override
 	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
+		calculator.setCurrentState(EvaluatedState.getInstance());
+		calculator.executePendingOperation();
+		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
+		calculator.setPendingOperation(unaryOperation);
+		return calculator.getDisplay();
 		
 	}
 

@@ -20,13 +20,12 @@ public class ReadyState extends CalculatorState {
 
 	@Override
 	public String enterDigit(Calculator calculator, char digit) {
-		// TODO Auto-generated method stub
+		//calculator.clear();
 		return calculator.getDisplay();
 	}
 
 	@Override
 	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
-		
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
 		calculator.setPendingOperation(binaryOperation);
@@ -35,19 +34,20 @@ public class ReadyState extends CalculatorState {
 
 	@Override
 	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
-		return null;
+		calculator.setCurrentState(EvaluatedState.getInstance());
+		calculator.executePendingOperation();
+		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
+		calculator.setPendingOperation(unaryOperation);
+		return calculator.getDisplay();
 	}
 
 	@Override
 	public String enterEquals(final Calculator calculator) {
-		// TODO Auto-generated method stub
 		return calculator.getDisplay();
 	}
 
 	@Override
 	public String enterPoint(final Calculator calculator) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

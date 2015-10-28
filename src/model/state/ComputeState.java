@@ -41,8 +41,7 @@ public class ComputeState extends CalculatorState{
 
 	@Override
 	public String enterEquals(final Calculator calculator) {
-		// TODO Auto-generated method stub
-		
+		return calculator.getDisplay();		
 	}
 
 	@Override

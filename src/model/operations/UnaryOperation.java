@@ -15,6 +15,7 @@ public abstract class UnaryOperation extends Operation {
 		this.isEvaluated = isEvaluated;
 	}
 	
+	abstract public double evaluate(final double operand);
 	
 	
 	

@@ -43,8 +43,7 @@ public class StartState extends CalculatorState{
 
 	@Override
 	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
-		
+		return calculator.getDisplay();		
 	}
 
 	@Override

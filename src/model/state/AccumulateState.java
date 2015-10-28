@@ -26,17 +26,13 @@ public class AccumulateState extends CalculatorState{
 		calculator.appendToDisplay(String.valueOf(digit));
 		calculator.appendToAccumulateStr(String.valueOf(digit));
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
 	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
-	
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
-		//String tmp = calculator.getDisplay();
-		//calculator.clearDisplay();
 		calculator.setPendingOperation(binaryOperation);
 		return calculator.getDisplay();
 		
@@ -44,8 +40,11 @@ public class AccumulateState extends CalculatorState{
 
 	@Override
 	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
-		
+		calculator.setCurrentState(EvaluatedState.getInstance());
+		calculator.executePendingOperation();
+		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
+		calculator.setPendingOperation(unaryOperation);
+		return calculator.getDisplay();
 	}
 
 	@Override

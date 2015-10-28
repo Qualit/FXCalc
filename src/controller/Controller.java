@@ -7,10 +7,13 @@ import model.Calculator;
 import model.Model;
 import model.operations.AdditionOperation;
 import model.operations.BinaryOperation;
+import model.operations.ChangeSignOperation;
 import model.operations.DivisionOperation;
 import model.operations.MultiplicationOperation;
 import model.operations.NoOperation;
+import model.operations.SquareRootOperation;
 import model.operations.SubtractionOperation;
+import model.operations.UnaryOperation;
 import model.state.ComputeState;
 
 public class Controller {
@@ -25,14 +28,14 @@ public class Controller {
 		return calculator.enterDigit(d);
 	}
 	
-	public String handleBinaryOperationEvent(final String operationSign){
-		if(operationSign==null){
+	public String handleBinaryOperationEvent(final String operationSymbol){
+		if(operationSymbol==null){
 			return "ERR in handleBInaryOP";
 		}
-		char op = operationSign.charAt(0);
+		char op = operationSymbol.charAt(0);
 		BinaryOperation binaryOperation;
 		System.out.println("handleOperationEvent, operation: "+op);
-		switch (String.valueOf(operationSign)) {
+		switch (String.valueOf(operationSymbol)) {
 			case "+":{
 			
 				binaryOperation = new AdditionOperation();
@@ -69,9 +72,27 @@ public class Controller {
 		return calculator.enterEqual();
 	}
 	
-	public String handleUnaryOperation() {
-		// TODO Auto-generated method stub
-		return null;
+	public String handleUnaryOperation(final String operationSymbol){
+		
+		if(operationSymbol==null){
+			return "ERR in handleBInaryOP";
+		}
+		
+		UnaryOperation unaryOperation;
+		switch (operationSymbol) {
+			case "sqrt":{
+				unaryOperation = new SquareRootOperation();
+				System.out.println("SQ_ROOT");
+				return calculator.enterUnaryOperation(unaryOperation);
+			}
+			case "+/-":{
+				unaryOperation = new ChangeSignOperation();
+				System.out.println("CASE SUB");
+				return calculator.enterUnaryOperation(unaryOperation);
+			}
+			default:
+				return "ERR";
+			}
 	}
 
 	public String handlePointOperation() {

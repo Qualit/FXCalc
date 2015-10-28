@@ -71,9 +71,9 @@ public class FXCalc extends Application {
 			display.setText(output);
 			return;
 		}
-		else if(eventText.matches("[\\sqrt\\+/-]")){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
-			String output = controller.handleUnaryOperation();
+		else if(eventText.equals("sqrt") || eventText.equals("+/-")){
+			System.out.println("sqrt or +/-: "+eventText+"calculator state: "+controller.getCurrentCalcState());
+			String output = controller.handleUnaryOperation(eventText);
 			display.setText(output);
 			return;
 		}

@@ -7,6 +7,7 @@ import model.operations.DivisionOperation;
 import model.operations.MultiplicationOperation;
 import model.operations.NoOperation;
 import model.operations.Operation;
+import model.operations.SquareRootOperation;
 import model.operations.SubtractionOperation;
 import model.operations.UnaryOperation;
 import model.state.AccumulateState;
@@ -144,6 +145,17 @@ public class Calculator {
 			display = String.valueOf(result);
 			System.out.println("NO_OP result: "+result+"accumulate: "+accumulate+" display: "+display);
 			pendingOperation = new NoOperation();
+			break;
+		}
+		case SQUARE_ROOT:{
+			try{
+				result = ((SquareRootOperation)pendingOperation).evaluate((result));
+				display = String.valueOf(result);
+				System.out.println("SQUARE ROOT, result: "+result+" display: "+display);
+			}catch(ArithmeticException | IllegalArgumentException ex){
+				System.out.println("Arith exception");
+				clear();
+			}
 			break;
 		}
 
