@@ -1,6 +1,12 @@
 package model.operations;
 
-public class DivisionOperation implements BinaryOperation{
+import enums.OperationType;
+
+public class DivisionOperation extends BinaryOperation{
+	
+	public DivisionOperation() {
+		this.operationType = OperationType.DIVIDE;
+	}
 
 	@Override
 	public double compute(final double operand1, final double operand2)throws ArithmeticException,IllegalArgumentException {
@@ -18,7 +24,7 @@ public class DivisionOperation implements BinaryOperation{
 			throw new ArithmeticException("Incorrect Division result");
 		}
 		
-		if(Double.isFinite(result)){
+		if(Double.isInfinite(result)){
 			throw new ArithmeticException("Division by 0 !!!");
 		}
 		

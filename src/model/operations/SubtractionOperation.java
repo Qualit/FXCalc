@@ -1,6 +1,13 @@
 package model.operations;
 
-public class SubtractionOperation implements BinaryOperation {
+import enums.OperationType;
+
+public class SubtractionOperation extends BinaryOperation {
+	
+	public SubtractionOperation() {
+		operationType = OperationType.SUBTRACT;
+	}
+	
 
 	@Override
 	public double compute(final double operand1, final double operand2)throws ArithmeticException,IllegalArgumentException {

@@ -1,7 +1,14 @@
 package model.operations;
 
-public class AdditionOperation implements BinaryOperation{
+import enums.OperationType;
 
+public class AdditionOperation extends  BinaryOperation{
+	
+	
+	public AdditionOperation() {
+		operationType = OperationType.ADD;
+	}
+	
 	@Override
 	public double compute(final double operand1, final double operand2) throws ArithmeticException,IllegalArgumentException{
 		
@@ -13,6 +20,7 @@ public class AdditionOperation implements BinaryOperation{
 		}
 		
 		double result = operand1 + operand2;
+		System.out.println("compute ADD, operand1: "+operand1+", operand2: "+operand2+"result: "+result);
 		
 		if(Double.isNaN(result)){
 			throw new ArithmeticException("Incorrect addition result");

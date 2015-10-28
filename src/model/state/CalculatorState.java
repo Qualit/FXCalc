@@ -6,10 +6,10 @@ import model.operations.UnaryOperation;
 
 public abstract class CalculatorState {
 	
-	public abstract void enterDigit(final Calculator calculator, final char digit);
-	public abstract void enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation);
-	public abstract void enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation);
-	public abstract void enterEquals(final Calculator calculator);
-	public abstract void enterPoint(final Calculator calculator);
+	public abstract String enterDigit(final Calculator calculator, final char digit);
+	public abstract String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation);
+	public abstract String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation);
+	public abstract String enterEquals(final Calculator calculator);
+	public abstract String enterPoint(final Calculator calculator);
 
 }

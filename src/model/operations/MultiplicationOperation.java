@@ -1,10 +1,16 @@
 package model.operations;
 
-public class MultiplicationOperation implements BinaryOperation{
+import enums.OperationType;
+
+public class MultiplicationOperation extends BinaryOperation{
+	
+	public MultiplicationOperation() {
+		this.operationType = OperationType.MULTIPLY;
+	}
 
 	@Override
 	public double compute(final double operand1, final double operand2) throws ArithmeticException,IllegalArgumentException{
-		
+		System.out.println("MultiplicationOperation, operand1:"+operand1);
 		if(Double.isNaN(operand1)){
 			throw new IllegalArgumentException("Multiplication operand1 is incorrect");
 		}
@@ -17,7 +23,7 @@ public class MultiplicationOperation implements BinaryOperation{
 		if(Double.isNaN(result)){
 			throw new ArithmeticException("Incorrect Multiplication result");
 		}
-		
+		System.out.println("MultiplicationOperation, result:"+result);
 		return result;
 	}
 	

@@ -19,31 +19,34 @@ public class ComputeState extends CalculatorState{
 	}
 
 	@Override
-	public void enterDigit(final Calculator calculator, char digit) {
+	public String enterDigit(final Calculator calculator, char digit) {
+		System.out.println("current state: "+this.getClass()+"digit:"+digit);
+		calculator.setCurrentState(AccumulateState.getInstance());
+		calculator.appendToDisplay(String.valueOf(digit));
+		calculator.appendToAccumulateStr(String.valueOf(digit));
+		return calculator.getDisplay();
+	}
+
+	@Override
+	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
+		return calculator.getDisplay();
+		
+	}
+
+	@Override
+	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
+	public String enterEquals(final Calculator calculator) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterEquals(final Calculator calculator) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterPoint(final Calculator calculator) {
+	public String enterPoint(final Calculator calculator) {
 		// TODO Auto-generated method stub
 		
 	}
