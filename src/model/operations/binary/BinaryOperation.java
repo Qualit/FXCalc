@@ -1,6 +1,7 @@
-package model.operations;
+package model.operations.binary;
 
 import enums.OperationType;
+import model.operations.Operation;
 
 public abstract class BinaryOperation extends Operation {
 	

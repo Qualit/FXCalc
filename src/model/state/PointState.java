@@ -1,8 +1,8 @@
 package model.state;
 
 import model.Calculator;
-import model.operations.BinaryOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.unary.UnaryOperation;
 
 public class PointState extends CalculatorState{
 	
@@ -20,7 +20,7 @@ public class PointState extends CalculatorState{
 
 	@Override
 	public String enterDigit(final Calculator calculator, char digit) {
-		calculator.setCurrentState(PointState.getInstance());
+		calculator.setCurrentState(AccumulateState.getInstance());
 		calculator.appendToDisplay(String.valueOf(digit));
 		calculator.appendToAccumulateStr(String.valueOf(digit));
 		return calculator.getDisplay();
@@ -28,12 +28,11 @@ public class PointState extends CalculatorState{
 
 	@Override
 	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
-		calculator.setCurrentState(ComputeState.getInstance());
+		calculator.setCurrentState(AccumulateState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
 		calculator.setPendingOperation(binaryOperation);
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
@@ -43,20 +42,17 @@ public class PointState extends CalculatorState{
 		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
 		calculator.setPendingOperation(unaryOperation);
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
 	public String enterEquals(final Calculator calculator) {
-		// TODO Auto-generated method stub
-		
+		calculator.executePendingOperation();
+		calculator.setCurrentState(ReadyState.getInstance());
+		return calculator.getDisplay();
 	}
 
 	@Override
 	public String enterPoint(final Calculator calculator) {
-		// TODO Auto-generated method stub
-		
+		return calculator.getDisplay();
 	}
-	
-	
 }

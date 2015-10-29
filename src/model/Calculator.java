@@ -1,15 +1,16 @@
 package model;
 
 import enums.OperationType;
-import model.operations.AdditionOperation;
-import model.operations.BinaryOperation;
-import model.operations.DivisionOperation;
-import model.operations.MultiplicationOperation;
 import model.operations.NoOperation;
 import model.operations.Operation;
-import model.operations.SquareRootOperation;
-import model.operations.SubtractionOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.AdditionOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.binary.DivisionOperation;
+import model.operations.binary.MultiplicationOperation;
+import model.operations.binary.SubtractionOperation;
+import model.operations.unary.ChangeSignOperation;
+import model.operations.unary.SquareRootOperation;
+import model.operations.unary.UnaryOperation;
 import model.state.AccumulateState;
 import model.state.CalculatorState;
 import model.state.ComputeState;
@@ -70,12 +71,10 @@ public class Calculator {
 	
 	public void appendToDisplay(final String text){
 		display = display + text;
-		System.out.println("append to display, display: "+display);
 	}
 	
 	public void appendToAccumulateStr(final String digit){
 		accumulateStr = accumulateStr + digit;
-		System.out.println("append to accumulate Str, accum str: "+accumulateStr);
 	}
 	
 	public void updateAccumulate(){
@@ -83,7 +82,6 @@ public class Calculator {
 			accumulate = Double.parseDouble(accumulateStr);
 		}
 		catch(NumberFormatException  | NullPointerException ex ){
-			System.out.println("update accumulate failed, accumStr: "+accumulateStr);
 			setCurrentState(ErrorState.getInstance());
 		}
 	}
@@ -95,39 +93,29 @@ public class Calculator {
 		display = "";
 	}
 	
-	
-	
 	public void executePendingOperation(){
-		
 		updateAccumulate();
 		clearAccumulateStr();
 		switch (pendingOperation.getOperationType()) {
 		case ADD:{
-			System.out.println("execute pending op, ADD result: "+result+" accumulate: "+accumulate);
 			result = ((AdditionOperation)pendingOperation).compute(result, accumulate);
 			display = String.valueOf(result);
-			System.out.println("after ADD, result: "+result+"display: "+display);
 			pendingOperation = new NoOperation();
-			break;
-			
+			break;	
 		}
 		case SUBTRACT:{
-			System.out.println("execute pending op,SUBTRACT result: "+result+" accumulate: "+accumulate);
 			result = ((SubtractionOperation)pendingOperation).compute(result, accumulate);
 			display = String.valueOf(result);
-			System.out.println("after SUB, result: "+result+"display: "+display);
 			pendingOperation = new NoOperation();
 			break;
 		}
 		case MULTIPLY:{
-			System.out.println("execute pending op,MULTIPLY result: "+result+" accumulate: "+accumulate);
 			result = ((MultiplicationOperation)pendingOperation).compute(result, accumulate);
 			display = String.valueOf(result);
 			pendingOperation = new NoOperation();
 			break;
 		}
 		case DIVIDE:{
-			System.out.println("execute pending op DIVIDE, result: "+result+" accumulate: "+accumulate);
 			try{
 				result = ((DivisionOperation)pendingOperation).compute(result, accumulate);
 				display = String.valueOf(result);
@@ -135,15 +123,12 @@ public class Calculator {
 				System.out.println("Arith exception");
 				clear();
 			}
-			
 			pendingOperation = new NoOperation();
 			break;
 		}
 		case POINT:{
 			result = accumulate;
-			//if(accumulate)
 			display = String.valueOf(result);
-			System.out.println("NO_OP result: "+result+"accumulate: "+accumulate+" display: "+display);
 			pendingOperation = new NoOperation();
 			break;
 		}
@@ -151,26 +136,35 @@ public class Calculator {
 			try{
 				result = ((SquareRootOperation)pendingOperation).evaluate((result));
 				display = String.valueOf(result);
-				System.out.println("SQUARE ROOT, result: "+result+" display: "+display);
 			}catch(ArithmeticException | IllegalArgumentException ex){
 				System.out.println("Arith exception");
 				clear();
 			}
+			pendingOperation = new NoOperation();
 			break;
 		}
-
+		case CHANGE_SIGN:{
+			try{
+				result = ((ChangeSignOperation)pendingOperation).evaluate((result));
+				display = String.valueOf(result);
+			}catch(ArithmeticException | IllegalArgumentException ex){
+				System.out.println("Arith exception");
+				clear();
+			}
+			pendingOperation = new NoOperation();
+			break;
+		}
 		case NO_OP:{
 			result = accumulate;
-			//if(accumulate)
 			display = String.valueOf(result);
-			System.out.println("NO_OP result: "+result+"accumulate: "+accumulate+" display: "+display);
 			break;
 		}
 
-		default:
-			//display = String.valueOf(result);
+		default:{
 			pendingOperation = new NoOperation();
 			return;
+		}
+			
 		}
 		return;
 		
@@ -218,7 +212,4 @@ public class Calculator {
 	public void setCurrentState(CalculatorState currentState) {
 		this.currentState = currentState;
 	}
-	
-	
-
 }

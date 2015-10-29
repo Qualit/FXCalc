@@ -1,9 +1,8 @@
 package model.state;
 
 import model.Calculator;
-import model.operations.BinaryOperation;
-import model.operations.PointOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.unary.UnaryOperation;
 
 public class AccumulateState extends CalculatorState{
 	
@@ -21,7 +20,6 @@ public class AccumulateState extends CalculatorState{
 
 	@Override
 	public String enterDigit(final Calculator calculator, char digit) {
-		System.out.println("current state: "+this.getClass()+"digit:"+digit);
 		calculator.setCurrentState(AccumulateState.getInstance());
 		calculator.appendToDisplay(String.valueOf(digit));
 		calculator.appendToAccumulateStr(String.valueOf(digit));
@@ -57,7 +55,6 @@ public class AccumulateState extends CalculatorState{
 	@Override
 	public String enterPoint(final Calculator calculator) {
 		calculator.setCurrentState(PointState.getInstance());
-		calculator.setPendingOperation(new PointOperation());
 		calculator.appendToDisplay(Calculator.DECIMAL_SEPARATOR);
 		calculator.appendToAccumulateStr(Calculator.DECIMAL_SEPARATOR);
 		return calculator.getDisplay();

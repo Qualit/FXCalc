@@ -1,4 +1,4 @@
-package model.operations;
+package model.operations.unary;
 
 import enums.OperationType;
 
@@ -10,7 +10,7 @@ public class ChangeSignOperation extends UnaryOperation {
 
 	@Override
 	public double evaluate(final double operand) {
-		double result = -operand;
+		double result = operand*(-1);
 		
 		if(Double.isNaN(result)){
 			throw new ArithmeticException();
@@ -19,7 +19,4 @@ public class ChangeSignOperation extends UnaryOperation {
 			return result;
 		}
 	}
-	
-	
-
 }

@@ -1,9 +1,8 @@
-package model.operations;
+package model.operations.binary;
 
 import enums.OperationType;
 
 public class AdditionOperation extends  BinaryOperation{
-	
 	
 	public AdditionOperation() {
 		operationType = OperationType.ADD;
@@ -20,7 +19,6 @@ public class AdditionOperation extends  BinaryOperation{
 		}
 		
 		double result = operand1 + operand2;
-		System.out.println("compute ADD, operand1: "+operand1+", operand2: "+operand2+"result: "+result);
 		
 		if(Double.isNaN(result)){
 			throw new ArithmeticException("Incorrect addition result");
@@ -28,6 +26,4 @@ public class AdditionOperation extends  BinaryOperation{
 		
 		return result;
 	}
-	
-
 }

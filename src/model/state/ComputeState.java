@@ -1,8 +1,8 @@
 package model.state;
 
 import model.Calculator;
-import model.operations.BinaryOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.unary.UnaryOperation;
 
 public class ComputeState extends CalculatorState{
 	
@@ -35,7 +35,7 @@ public class ComputeState extends CalculatorState{
 
 	@Override
 	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
-		// TODO Auto-generated method stub
+		return calculator.getDisplay();
 		
 	}
 
@@ -46,7 +46,7 @@ public class ComputeState extends CalculatorState{
 
 	@Override
 	public String enterPoint(final Calculator calculator) {
-		// TODO Auto-generated method stub
+		return calculator.getDisplay();
 		
 	}
 	

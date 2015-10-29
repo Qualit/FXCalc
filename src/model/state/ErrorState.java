@@ -1,8 +1,8 @@
 package model.state;
 
 import model.Calculator;
-import model.operations.BinaryOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.unary.UnaryOperation;
 
 public class ErrorState extends CalculatorState {
 	

@@ -22,7 +22,6 @@ public class FXCalc extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//controller = new Controller();
 			Parent root = FXMLLoader.load(getClass().getResource("fxcalc.fxml"));
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("fxscene.css").toExternalForm());
@@ -38,47 +37,36 @@ public class FXCalc extends Application {
 		}
 	}
 	
-	//Double currentResult;
-	
 	@FXML
 	public void Click(ActionEvent event) {
 		String eventText = ((Button)event.getSource()).getText();
-		System.out.println("Click:"+eventText);
 		
 		if(eventText.matches("[0-9]")){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handleDigitEvent(eventText);
 			display.setText(output);
-			System.out.println(output);
 			return;
 		}
 		else if(eventText.matches("[\\+\\-\\*\\/]")){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handleBinaryOperationEvent(eventText);
 			display.setText(output);
-			System.out.println("OPERATOR:"+output);
 			return;
 		}
 		else if(eventText.equals("=")){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handleEqualOperator();
 			display.setText(output);
 			return;
 		}
 		else if(eventText.equals("C")){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handleClearOperation();
 			display.setText(output);
 			return;
 		}
 		else if(eventText.equals("sqrt") || eventText.equals("+/-")){
-			System.out.println("sqrt or +/-: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handleUnaryOperation(eventText);
 			display.setText(output);
 			return;
 		}
 		else if (eventText.equals(Calculator.DECIMAL_SEPARATOR)){
-			System.out.println("eventText: "+eventText+"calculator state: "+controller.getCurrentCalcState());
 			String output = controller.handlePointOperation();
 			display.setText(output);
 			return;

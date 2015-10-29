@@ -1,4 +1,4 @@
-package model.operations;
+package model.operations.binary;
 
 import enums.OperationType;
 

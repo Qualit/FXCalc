@@ -1,8 +1,8 @@
 package model.state;
 
 import model.Calculator;
-import model.operations.BinaryOperation;
-import model.operations.UnaryOperation;
+import model.operations.binary.BinaryOperation;
+import model.operations.unary.UnaryOperation;
 
 public class StartState extends CalculatorState{
 
@@ -20,13 +20,11 @@ public class StartState extends CalculatorState{
 
 	@Override
 	public String enterDigit(final Calculator calculator, char digit) {
-		System.out.println("current state: "+this.getClass()+"digit:"+digit);
 		calculator.setCurrentState(AccumulateState.getInstance());
 		calculator.clearDisplay();
 		calculator.appendToDisplay(String.valueOf(digit));
 		calculator.appendToAccumulateStr(String.valueOf(digit));
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
@@ -34,11 +32,8 @@ public class StartState extends CalculatorState{
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
-		//String tmp = calculator.getDisplay();
-		//calculator.clearDisplay();
 		calculator.setPendingOperation(binaryOperation);
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
@@ -49,13 +44,10 @@ public class StartState extends CalculatorState{
 	@Override
 	public String enterEquals(final Calculator calculator) {
 		return calculator.getDisplay();
-		
 	}
 
 	@Override
 	public String enterPoint(final Calculator calculator) {
 		return calculator.getDisplay();
 	}
-	
-	
 }

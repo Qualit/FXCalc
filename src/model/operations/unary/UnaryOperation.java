@@ -1,4 +1,6 @@
-package model.operations;
+package model.operations.unary;
+
+import model.operations.Operation;
 
 public abstract class UnaryOperation extends Operation {
 	
