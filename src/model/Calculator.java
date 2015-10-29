@@ -9,6 +9,7 @@ import model.operations.binary.DivisionOperation;
 import model.operations.binary.MultiplicationOperation;
 import model.operations.binary.SubtractionOperation;
 import model.operations.unary.ChangeSignOperation;
+import model.operations.unary.PercentageOperation;
 import model.operations.unary.SquareRootOperation;
 import model.operations.unary.UnaryOperation;
 import model.state.AccumulateState;
@@ -77,13 +78,8 @@ public class Calculator {
 		accumulateStr = accumulateStr + digit;
 	}
 	
-	public void updateAccumulate(){
-		try{
+	public void updateAccumulate()throws NumberFormatException, NullPointerException{
 			accumulate = Double.parseDouble(accumulateStr);
-		}
-		catch(NumberFormatException  | NullPointerException ex ){
-			setCurrentState(ErrorState.getInstance());
-		}
 	}
 	
 	private void clearAccumulateStr(){
@@ -93,7 +89,7 @@ public class Calculator {
 		display = "";
 	}
 	
-	public void executePendingOperation(){
+	public void executePendingOperation()throws ArithmeticException, IllegalArgumentException{
 		updateAccumulate();
 		clearAccumulateStr();
 		switch (pendingOperation.getOperationType()) {
@@ -116,13 +112,8 @@ public class Calculator {
 			break;
 		}
 		case DIVIDE:{
-			try{
-				result = ((DivisionOperation)pendingOperation).compute(result, accumulate);
-				display = String.valueOf(result);
-			}catch(ArithmeticException | IllegalArgumentException ex){
-				System.out.println("Arith exception");
-				clear();
-			}
+			result = ((DivisionOperation)pendingOperation).compute(result, accumulate);
+			display = String.valueOf(result);
 			pendingOperation = new NoOperation();
 			break;
 		}
@@ -133,24 +124,20 @@ public class Calculator {
 			break;
 		}
 		case SQUARE_ROOT:{
-			try{
-				result = ((SquareRootOperation)pendingOperation).evaluate((result));
-				display = String.valueOf(result);
-			}catch(ArithmeticException | IllegalArgumentException ex){
-				System.out.println("Arith exception");
-				clear();
-			}
+			result = ((SquareRootOperation)pendingOperation).evaluate((result));
+			display = String.valueOf(result);
 			pendingOperation = new NoOperation();
 			break;
 		}
 		case CHANGE_SIGN:{
-			try{
-				result = ((ChangeSignOperation)pendingOperation).evaluate((result));
-				display = String.valueOf(result);
-			}catch(ArithmeticException | IllegalArgumentException ex){
-				System.out.println("Arith exception");
-				clear();
-			}
+			result = ((ChangeSignOperation)pendingOperation).evaluate((result));
+			display = String.valueOf(result);
+			pendingOperation = new NoOperation();
+			break;
+		}
+		case PERCENTAGE:{
+			result = ((PercentageOperation)pendingOperation).evaluate((result));
+			display = String.valueOf(result);
 			pendingOperation = new NoOperation();
 			break;
 		}

@@ -8,7 +8,7 @@ public abstract class BinaryOperation extends Operation {
 	
 	protected boolean isComputed;
 	
-	abstract double compute(final double operand1, final double operand2);
+	abstract double compute(final double operand1, final double operand2)throws ArithmeticException, IllegalArgumentException;
 
 	public boolean isComputed() {
 		return isComputed;

@@ -11,8 +11,10 @@ import model.operations.binary.DivisionOperation;
 import model.operations.binary.MultiplicationOperation;
 import model.operations.binary.SubtractionOperation;
 import model.operations.unary.ChangeSignOperation;
+import model.operations.unary.PercentageOperation;
 import model.operations.unary.SquareRootOperation;
 import model.operations.unary.UnaryOperation;
+import model.state.CalculatorState;
 import model.state.ComputeState;
 
 public class Controller {
@@ -20,17 +22,21 @@ public class Controller {
 	private Calculator calculator;
 	
 	
-	public String handleDigitEvent(final String digit){
+	public String handleDigitEvent(final String digit) throws NullPointerException{
 		if(digit==null){
-			return "ERR";
+			throw new NullPointerException();
 		}
 		char d = digit.charAt(0);
 		return calculator.enterDigit(d);
 	}
 	
-	public String handleBinaryOperationEvent(final String operationSymbol){
+	public String handleBinaryOperationEvent(final String operationSymbol)throws 
+						NullPointerException,
+						ArithmeticException,
+						IllegalArgumentException{
+		
 		if(operationSymbol==null){
-			return "ERR ";
+			throw new NullPointerException();
 		}
 		char op = operationSymbol.charAt(0);
 		BinaryOperation binaryOperation;
@@ -80,6 +86,10 @@ public class Controller {
 				unaryOperation = new ChangeSignOperation();
 				return calculator.enterUnaryOperation(unaryOperation);
 			}
+			case "%":{
+				unaryOperation = new PercentageOperation();
+				return calculator.enterUnaryOperation(unaryOperation);
+			}
 			default:
 				return "ERR";
 			}
@@ -93,7 +103,11 @@ public class Controller {
 		calculator = new Calculator();
 	}
 	
-	public String getCurrentCalcState(){
-		return calculator.getCurrentState().toString();
+	public CalculatorState getCurrentCalcState(){
+		return calculator.getCurrentState();
+	}
+	
+	public void setCurrentCalculatorState(CalculatorState calculatorState){
+		this.calculator.setCurrentState(calculatorState);
 	}
 }

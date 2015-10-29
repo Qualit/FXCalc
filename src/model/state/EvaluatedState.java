@@ -24,7 +24,8 @@ public class EvaluatedState extends CalculatorState {
 	}
 
 	@Override
-	public String enterBinaryOperation(Calculator calculator, BinaryOperation binaryOperation) {
+	public String enterBinaryOperation(Calculator calculator, BinaryOperation binaryOperation) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
@@ -33,7 +34,8 @@ public class EvaluatedState extends CalculatorState {
 	}
 
 	@Override
-	public String enterUnaryOperation(Calculator calculator, UnaryOperation unaryOperation) {
+	public String enterUnaryOperation(Calculator calculator, UnaryOperation unaryOperation) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.setCurrentState(EvaluatedState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
@@ -42,7 +44,8 @@ public class EvaluatedState extends CalculatorState {
 	}
 
 	@Override
-	public String enterEquals(Calculator calculator) {
+	public String enterEquals(Calculator calculator) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.executePendingOperation();
 		calculator.setCurrentState(ReadyState.getInstance());
 		return calculator.getDisplay();

@@ -1,15 +1,32 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .root {
 -fx-font-size: 26px;
+-fx-pref-width: 600px;
+-fx-pref-height: 400px;
+-fx-min-width:350px;
+-fx-min-height:200px;
+-fx-max-width:1000px;
+-fx-max-height:600px;
+-fx-background-color: #EBA613;
 }
+
 .button {
--fx-background-radius: 5%;
--fx-font-size: 20px;
-
--fx-max-width:2000px;
--fx-max-height:2000px;
+-fx-font: 18px "Verdana";
+-fx-background-color: #EBA613;
+-fx-text-fill: yellow;
+-fx-border-color: yellow;
+-fx-border-insets: 1;
+-fx-border-width: 3;
 }
 
-.error .errorclass{
+.display {
+-fx-text-fill: black;
+-fx-background-color: #B5E630;
+-fx-border-color: yellow;
+-fx-border-insets: 1;
+-fx-border-width: 3;
+}
+
+.error .errormode{
 	-fx-text-fill:gray;
 }

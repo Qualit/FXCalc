@@ -28,7 +28,8 @@ public class StartState extends CalculatorState{
 	}
 
 	@Override
-	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
+	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.setCurrentState(ComputeState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());

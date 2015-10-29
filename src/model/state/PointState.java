@@ -27,7 +27,8 @@ public class PointState extends CalculatorState{
 	}
 
 	@Override
-	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) {
+	public String enterBinaryOperation(final Calculator calculator, final BinaryOperation binaryOperation) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.setCurrentState(AccumulateState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(binaryOperation.getOperationType().getOperationTypeSign());
@@ -36,7 +37,8 @@ public class PointState extends CalculatorState{
 	}
 
 	@Override
-	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) {
+	public String enterUnaryOperation(final Calculator calculator, final UnaryOperation unaryOperation) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.setCurrentState(EvaluatedState.getInstance());
 		calculator.executePendingOperation();
 		calculator.appendToDisplay(unaryOperation.getOperationType().getOperationTypeSign());
@@ -45,7 +47,8 @@ public class PointState extends CalculatorState{
 	}
 
 	@Override
-	public String enterEquals(final Calculator calculator) {
+	public String enterEquals(final Calculator calculator) 
+			throws NumberFormatException, ArithmeticException, IllegalArgumentException{
 		calculator.executePendingOperation();
 		calculator.setCurrentState(ReadyState.getInstance());
 		return calculator.getDisplay();

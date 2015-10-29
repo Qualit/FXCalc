@@ -9,7 +9,7 @@ public class ChangeSignOperation extends UnaryOperation {
 	}
 
 	@Override
-	public double evaluate(final double operand) {
+	public double evaluate(final double operand)throws ArithmeticException {
 		double result = operand*(-1);
 		
 		if(Double.isNaN(result)){
